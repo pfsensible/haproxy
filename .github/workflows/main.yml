@@ -55,7 +55,8 @@ jobs:
         run: |
           pip install ansible-core==${{ matrix.ansible-version }}.* dnspython parameterized pyyaml
           ansible-galaxy collection install community.internal_test_tools
-          ansible-galaxy collection install pfsensible.core
+          # Not currently shipping tests in releases
+          ansible-galaxy collection install git+https://github.com/pfsensible/core.git
 
       - name: Run ansible tests
         run: |
