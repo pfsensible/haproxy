@@ -1,0 +1,2 @@
+minor_changes:
+  - Update example for pfsense_haproxy_backend httpcheck_method to use OPTION instead of invalid HTTP.

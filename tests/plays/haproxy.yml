@@ -1,0 +1,15 @@
+---
+- hosts: pfsense
+  gather_facts: false
+  tasks:
+    - name: Add backend
+      pfsensible.haproxy.pfsense_haproxy_backend:
+        name: exchange
+        balance: leastconn
+        httpcheck_method: OPTIONS
+        state: present
+
+    - name: Remove backend
+      pfsensible.haproxy.pfsense_haproxy_backend:
+        name: exchange
+        state: absent
