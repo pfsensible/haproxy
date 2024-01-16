@@ -108,3 +108,6 @@ venv.bak/
 
 # ansible-galaxy package
 *.tar.gz
+
+#macOS
+.DS_Store
