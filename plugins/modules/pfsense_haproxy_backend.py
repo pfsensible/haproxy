@@ -69,7 +69,9 @@ options:
     required: false
     type: bool
   httpcheck_method:
-    description: HTTP check method.
+    description: HTTP check method. OPTIONS is the method usually best to perform server checks, HEAD and GET can also be used. If the server gets marked as
+      down in the stats page then changing this to GET usually has the biggest chance of working, but might cause more processing overhead on the websever and
+      is less easy to filter out of its logs.
     required: false
     type: str
     choices: ['OPTIONS', 'HEAD', 'GET', 'POST', 'PUT', 'DELETE', 'TRACE']
@@ -98,14 +100,14 @@ options:
 
 EXAMPLES = """
 - name: Add backend
-  pfsense_haproxy_backend:
+  pfsensible.haproxy.pfsense_haproxy_backend:
     name: exchange
     balance: leastconn
-    httpcheck_method: HTTP
+    httpcheck_method: OPTIONS
     state: present
 
 - name: Remove backend
-  pfsense_haproxy_backend:
+  pfsensible.haproxy.pfsense_haproxy_backend:
     name: exchange
     state: absent
 """
@@ -115,7 +117,7 @@ commands:
     description: the set of commands that would be pushed to the remote device (if pfSense had a CLI)
     returned: always
     type: list
-    sample: ["create haproxy_backend 'exchange', balance='leastconn', httpcheck_method='HTTP'", "delete haproxy_backend 'exchange'"]
+    sample: ["create haproxy_backend 'exchange', balance='leastconn', httpcheck_method='OPTIONS'", "delete haproxy_backend 'exchange'"]
 """
 
 from ansible.module_utils.basic import AnsibleModule
